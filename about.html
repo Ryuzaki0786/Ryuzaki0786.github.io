@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — Ekam Bhullar</title>
+<meta name="description" content="Computer Engineering at Purdue, concentrating in computer systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<canvas id="lattice" aria-hidden="true"></canvas>
+<div id="curtain" aria-hidden="true"></div>
+
+<div class="shell">
+<div class="wrap">
+
+  <header class="mast">
+    <a class="mark" href="index.html">
+      <strong>Ekam Bhullar</strong>
+      <span class="meta">Purdue CmpE '28</span>
+    </a>
+    <nav class="nav meta-b">
+      <a href="index.html">Index</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Work</a>
+      <a href="writing.html">Writing</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sec">
+      <div class="row head">
+        <div class="meta rv">01 / About</div>
+        <h2 class="rv">I'd rather understand one layer completely than skim five.</h2>
+      </div>
+
+      <div class="row">
+        <div class="meta rv">Background</div>
+        <div class="prose rv">
+          <p>I'm a Computer Engineering undergraduate at Purdue University, concentrating
+          in computer systems. My interests sit at the boundaries most curricula step
+          over: ASIC design and computer architecture, compilers, operating systems and
+          networks, numerical analysis, and the quantitative machinery underneath markets.</p>
+
+          <p>The through-line is a refusal to use abstractions I haven't opened. I've
+          written a Unix shell against raw POSIX calls rather than a library, a TCP server
+          against raw sockets rather than a framework, and a simulation engine whose linear
+          algebra I derived by hand before typing a line of it. <strong>It is a slow way to
+          learn and the only one that has ever worked for me.</strong></p>
+
+          <p>Most of what I build starts as a question I couldn't answer from a diagram.
+          What does the kernel actually do with a signal. Why does a finite grid reproduce
+          d'Alembert's solution when it has never heard of d'Alembert. Where exactly does
+          a GPU stop being fast. The projects are the residue of chasing those down.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="row head">
+        <div class="meta rv">02 / Position</div>
+        <h2 class="rv">What I'm doing right now.</h2>
+      </div>
+
+      <div class="entry rv">
+        <div class="meta">Research</div>
+        <div>
+          <h4>Undergraduate Research Scholar</h4>
+          <p>AI-assisted metadata curation for <strong>re3data</strong>, the global registry
+          of research data repositories. Working on evaluation and enrichment pipelines for
+          repository descriptions.</p>
+        </div>
+      </div>
+      <div class="entry rv">
+        <div class="meta">Teaching</div>
+        <div>
+          <h4>Course Assistant, Purdue</h4>
+          <p>Explaining things is the fastest way to find the gaps in your own understanding.</p>
+        </div>
+      </div>
+      <div class="entry rv">
+        <div class="meta">Coursework</div>
+        <div>
+          <h4>Computer Systems concentration</h4>
+          <p>ASIC design, computer architecture, and compilers ahead. Data structures,
+          digital logic and SystemVerilog, and signals behind.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="row head">
+        <div class="meta rv">03 / Reading</div>
+        <h2 class="rv">What I read when nobody assigns it.</h2>
+      </div>
+
+      <div class="entry rv">
+        <div class="meta">Engineering</div>
+        <div>
+          <h4><a href="https://blog.janestreet.com/" target="_blank" rel="noopener">Jane Street Tech Blog</a></h4>
+          <p>Where functional programming meets market microstructure.</p>
+        </div>
+      </div>
+      <div class="entry rv">
+        <div class="meta">Engineering</div>
+        <div>
+          <h4><a href="https://www.tower-research.com/" target="_blank" rel="noopener">Tower Research Capital</a></h4>
+          <p>Low-latency systems as they actually get built and run.</p>
+        </div>
+      </div>
+      <div class="entry rv">
+        <div class="meta">Mathematics</div>
+        <div>
+          <h4><a href="https://www.quantamagazine.org/" target="_blank" rel="noopener">Quanta Magazine</a></h4>
+          <p>Physics and mathematics explained with respect for the reader.</p>
+        </div>
+      </div>
+      <div class="entry rv">
+        <div class="meta">Currently</div>
+        <div>
+          <h4>The Count of Monte Cristo</h4>
+          <p>Dumas understood patience as a strategy rather than a virtue.</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:clamp(30px,5vh,52px)">
+        <div class="meta rv">Fields</div>
+        <div class="fields rv">
+          <span>VLSI &amp; ASIC Design</span><span>Computer Architecture</span>
+          <span>Compilers</span><span>Operating Systems</span><span>Networks</span>
+          <span>Numerical Analysis</span><span>Stochastic Calculus</span>
+          <span>Classical Mechanics</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="contact">
+      <div class="row head">
+        <div class="meta rv">04 / Contact</div>
+        <h2 class="rv">Open to conversations about systems, silicon, or markets.</h2>
+      </div>
+      <div class="row">
+        <div class="meta rv">Channels</div>
+        <div class="chan rv">
+          <a href="https://github.com/Ryuzaki0786" target="_blank" rel="noopener">GitHub<span>Ryuzaki0786</span></a>
+          <a href="#" data-edit>LinkedIn<span>add your URL</span></a>
+          <a href="#" data-edit>Email<span>add your address</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="meta rv">Ekam Bhullar</div>
+    <div class="meta rv">Built from scratch — no template</div>
+  </footer>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

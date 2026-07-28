@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ekam Bhullar — Computer Engineering, Purdue</title>
+<meta name="description" content="Computer Engineering at Purdue. Low-level software, computer architecture, numerical methods.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<canvas id="lattice" aria-hidden="true"></canvas>
+<div id="curtain" aria-hidden="true"></div>
+
+<div class="shell">
+<div class="wrap">
+
+  <header class="mast">
+    <a class="mark" href="index.html">
+      <strong>Ekam Bhullar</strong>
+      <span class="meta">Purdue CmpE '28</span>
+    </a>
+    <nav class="nav meta-b">
+      <a href="index.html">Index</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Work</a>
+      <a href="writing.html">Writing</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-tags">
+        <div class="meta rv">Low-Level Software</div>
+        <div class="meta rv">Computer Architecture</div>
+        <div class="meta rv">Numerical Methods</div>
+        <div class="meta rv">Quantitative Systems</div>
+      </div>
+
+      <h1 class="title hero-name">
+        <span><i>Ekam</i></span>
+        <span><i>Bhullar</i></span>
+      </h1>
+
+      <p class="hero-line">
+        I work at the bottom of the stack — where software meets silicon, and where
+        continuous mathematics has to survive being handed to a finite machine.
+        <em>One layer at a time.</em>
+      </p>
+
+      <div class="hero-foot">
+        <div class="meta">B.S. Computer Engineering / Purdue University / 2028</div>
+        <div class="meta">Selected work, 2024—2026</div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="row head">
+        <div class="meta rv">01 / Index</div>
+        <h2 class="rv">Things I built to find out how they work.</h2>
+      </div>
+
+      <div class="idx">
+        <a class="idx-item rv" href="projects.html">
+          <div class="meta">quantum-sim</div>
+          <div>
+            <h3>A quantum circuit simulator, written from zero</h3>
+            <p>C++ and CUDA. No external math libraries. 95.93× speedup on device-resident state.</p>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="idx-item rv" href="projects.html">
+          <div class="meta">esh</div>
+          <div>
+            <h3>A Unix shell — fork, exec, pipes, signals</h3>
+            <p>Built against raw POSIX calls to find out what happens between Enter and output.</p>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="idx-item rv" href="projects.html">
+          <div class="meta">chatserver</div>
+          <div>
+            <h3>A multi-client TCP server on raw sockets</h3>
+            <p>select-based I/O multiplexing. One thread, no blocking, no framework.</p>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a class="idx-item rv" href="projects.html">
+          <div class="meta">All work</div>
+          <div>
+            <h3>Five projects, in full</h3>
+            <p>Including the exoplanet archive explorer and an in-progress quant research stack.</p>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="row">
+        <div class="meta rv">02 / Now</div>
+        <div>
+          <h2 class="rv" style="margin-bottom:1.2rem">Currently.</h2>
+          <div class="prose dim rv">
+            <p>Undergraduate researcher on AI-assisted metadata curation for the
+            <strong>re3data</strong> research-data registry. Course assistant at Purdue.
+            Concentrating in computer systems — ASIC design, architecture, compilers.</p>
+            <p>Reading Dumas. Deriving on paper first, as always.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="meta rv">Ekam Bhullar</div>
+    <div class="meta rv">Built from scratch — no template</div>
+  </footer>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

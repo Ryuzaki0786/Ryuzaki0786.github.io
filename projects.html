@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Ekam Bhullar</title>
+<meta name="description" content="Systems, simulation, and quantitative projects built from first principles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<canvas id="lattice" aria-hidden="true"></canvas>
+<div id="curtain" aria-hidden="true"></div>
+
+<div class="shell">
+<div class="wrap">
+
+  <header class="mast">
+    <a class="mark" href="index.html">
+      <strong>Ekam Bhullar</strong>
+      <span class="meta">Purdue CmpE '28</span>
+    </a>
+    <nav class="nav meta-b">
+      <a href="index.html">Index</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Work</a>
+      <a href="writing.html">Writing</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sec">
+      <div class="row head">
+        <div class="meta rv">01 / Work</div>
+        <h2 class="rv">Five projects, each built to answer a question I couldn't answer from a diagram.</h2>
+      </div>
+
+      <article class="proj rv">
+        <div class="proj-key">
+          <div class="meta-b">quantum-sim</div>
+          <div class="meta">C++ / CUDA</div>
+          <div class="meta">2026</div>
+        </div>
+        <div>
+          <h3><a href="https://github.com/Ryuzaki0786/Quantum-Simulation" target="_blank" rel="noopener">A quantum circuit simulator, written from zero</a></h3>
+          <p>A numerical simulation engine with no external math dependencies — templated
+          linear algebra, an RK4 integrator validated against damped harmonic oscillators,
+          and finite-difference PDE solvers for the wave and heat equations. Extended into
+          full state-vector circuit simulation. The CUDA path keeps state resident on device
+          across gate application rather than round-tripping to host memory, which is where
+          the speedup actually comes from.</p>
+          <dl class="readout">
+            <div><dt>GPU speedup</dt><dd>95.93×<small>@ 256 gates</small></dd></div>
+            <div><dt>OpenMP gate sweep</dt><dd>3.2×</dd></div>
+            <div><dt>Born-rule reduction</dt><dd>2.5×</dd></div>
+            <div><dt>Teleportation trials</dt><dd>1000<small>/ 1000</small></dd></div>
+          </dl>
+          <div class="stack"><span>C++17</span><span>CUDA</span><span>OpenMP</span><span>Numerical Methods</span><span>Roofline Analysis</span></div>
+        </div>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-key">
+          <div class="meta-b">esh</div>
+          <div class="meta">C / POSIX</div>
+          <div class="meta">2025</div>
+        </div>
+        <div>
+          <h3><a href="https://github.com/Ryuzaki0786" target="_blank" rel="noopener">A Unix shell — fork, exec, pipes, signals</a></h3>
+          <p>A working shell built directly on system calls. Command parsing, foreground and
+          background job control, pipelines between processes, signal handling for SIGINT and
+          SIGTSTP, and I/O redirection. Written to find out precisely what happens between
+          pressing Enter and seeing output — and how much of that a library normally hides.</p>
+          <div class="stack"><span>C</span><span>POSIX</span><span>Process Control</span><span>Signals</span><span>File Descriptors</span></div>
+        </div>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-key">
+          <div class="meta-b">chatserver</div>
+          <div class="meta">C / TCP</div>
+          <div class="meta">2025</div>
+        </div>
+        <div>
+          <h3><a href="https://github.com/Ryuzaki0786" target="_blank" rel="noopener">A multi-client TCP chat server on raw sockets</a></h3>
+          <p>A concurrent server handling many simultaneous clients over TCP using
+          select-based I/O multiplexing — one thread, no blocking, no framework. Socket
+          lifecycle management, per-client state tracking, and message broadcast. Written to
+          understand the network stack that sits under every web framework I will ever be handed.</p>
+          <div class="stack"><span>C</span><span>TCP/IP</span><span>I/O Multiplexing</span><span>Concurrency</span></div>
+        </div>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-key">
+          <div class="meta-b">exoplanet-db</div>
+          <div class="meta">PostgreSQL / Node</div>
+          <div class="meta">2025</div>
+        </div>
+        <div>
+          <h3><a href="https://github.com/Ryuzaki0786" target="_blank" rel="noopener">An explorer for 5,700 confirmed exoplanets</a></h3>
+          <p>A full-stack data application over NASA's exoplanet archive: a schema designed
+          around the real observational record rather than a convenient one, an Express API
+          layer, and visualizations for radius, orbital period, and discovery-method
+          distributions.</p>
+          <dl class="readout">
+            <div><dt>Confirmed planets</dt><dd>5,700<small>records</small></dd></div>
+            <div><dt>Source</dt><dd>NASA<small>archive</small></dd></div>
+          </dl>
+          <div class="stack"><span>PostgreSQL</span><span>Node.js</span><span>Express</span><span>Chart.js</span></div>
+        </div>
+      </article>
+
+      <article class="proj rv">
+        <div class="proj-key">
+          <div class="meta-b">Alpha Engine</div>
+          <div class="meta">C++ / Quant</div>
+          <div class="meta">In progress</div>
+        </div>
+        <div>
+          <h3>A systematic trading research framework</h3>
+          <p>A four-layer C++ research stack under construction: a Monte Carlo engine for
+          path simulation and option pricing, a linear algebra and optimization core, factor
+          models, and an event-driven backtester over a market-data layer. Infrastructure for
+          a longer project — a systematic fund I intend to found. Deliberately parked until
+          the semester's other commitments clear, with the stopping point documented.</p>
+          <div class="stack"><span>C++</span><span>Monte Carlo</span><span>Stochastic Calculus</span><span>Backtesting</span><span class="wip">In Progress</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="sec">
+      <div class="row">
+        <div class="meta rv">02 / Note</div>
+        <div class="prose dim rv">
+          <p>Every project here was built without a framework doing the interesting part.
+          That is a constraint I set on purpose, and it is the reason there are five of these
+          rather than fifteen.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="meta rv">Ekam Bhullar</div>
+    <div class="meta rv">Built from scratch — no template</div>
+  </footer>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

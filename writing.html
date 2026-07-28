@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing — Ekam Bhullar</title>
+<meta name="description" content="Essays on mathematics, physics, and computation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<canvas id="lattice" aria-hidden="true"></canvas>
+<div id="curtain" aria-hidden="true"></div>
+
+<div class="shell">
+<div class="wrap">
+
+  <header class="mast">
+    <a class="mark" href="index.html">
+      <strong>Ekam Bhullar</strong>
+      <span class="meta">Purdue CmpE '28</span>
+    </a>
+    <nav class="nav meta-b">
+      <a href="index.html">Index</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Work</a>
+      <a href="writing.html">Writing</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sec">
+      <div class="row head">
+        <div class="meta rv">01 / Writing</div>
+        <h2 class="rv">Notes on mathematics that turned out to be beautiful.</h2>
+      </div>
+
+      <div class="row">
+        <div class="meta rv">Premise</div>
+        <div class="prose dim rv">
+          <p>Short essays, written for my future self and published in case they are useful
+          to yours. Mostly about the moment where a piece of mathematics stops being notation
+          and starts being a description of something real.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="row head">
+        <div class="meta rv">02 / Essays</div>
+        <h2 class="rv">Published.</h2>
+      </div>
+
+      <div class="entry rv">
+        <div class="meta">Essay / 2026</div>
+        <div>
+          <h4><a href="#" data-edit>The Wave Equation Is a Time Machine</a></h4>
+          <p>On d'Alembert, leapfrog discretization, and watching a 278-year-old analytical
+          result fall out of arithmetic on a grid. Why a pulse released from rest splits in
+          two, and why it comes back from a fixed boundary upside down.</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:clamp(28px,4.6vh,48px)">
+        <div class="meta rv">Note</div>
+        <div class="prose dim rv">
+          <p>The lattice behind this page is that essay, running. A 2D wave equation solved
+          by the same leapfrog scheme, on a mesh with fixed edges. Click anywhere on the
+          background to perturb the field.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="meta rv">Ekam Bhullar</div>
+    <div class="meta rv">Built from scratch — no template</div>
+  </footer>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
