@@ -3,14 +3,14 @@
    ═══════════════════════════════════════════════ */
 
 :root{
-  --ink:#08090a;
-  --ink-2:#0d0f11;
-  --bone:#e9e7e2;
-  --dim:#8e8b84;
-  --faint:#4d4b47;
-  --rule:#1c1e21;
-  --rule-2:#26292c;
-  --signal:#b7a98b;
+  --ink:#0d1620;
+  --ink-2:#121f2b;
+  --bone:#e8ecef;
+  --dim:#7e8b96;
+  --faint:#465661;
+  --rule:#1a2733;
+  --rule-2:#24323f;
+  --signal:#c9a769;
 
   --disp:'Archivo',system-ui,sans-serif;
   --body:'Newsreader',Georgia,serif;

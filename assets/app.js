@@ -121,7 +121,7 @@ const Lattice = (() => {
         const a = Math.min(Math.abs(curr[k]) * 1.5, 1);
         if (a < 0.06) continue;
         ctx.globalAlpha = a * 0.5;
-        ctx.fillStyle = curr[k] > 0 ? '#e9e7e2' : '#b7a98b';
+        ctx.fillStyle = curr[k] > 0 ? '#e8ecef' : '#c9a769';
         const r = 1 + a * 1.4;
         ctx.fillRect(px[k] - r / 2, py[k] - r / 2, r, r);
       }
@@ -136,9 +136,9 @@ const Lattice = (() => {
     cv.style.width = W + 'px'; cv.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     grad = ctx.createLinearGradient(0, 0, 0, H);
-    grad.addColorStop(0,   'rgba(233,231,226,0.028)');  // far — near horizon
-    grad.addColorStop(0.55,'rgba(233,231,226,0.062)');
-    grad.addColorStop(1,   'rgba(233,231,226,0.105)');  // near
+    grad.addColorStop(0,   'rgba(232,236,239,0.028)');  // far — near horizon
+    grad.addColorStop(0.55,'rgba(232,236,239,0.062)');
+    grad.addColorStop(1,   'rgba(232,236,239,0.105)');  // near
     if (REDUCE) draw();
   }
 
