@@ -4,11 +4,12 @@
    1. lattice   : a 2D wave equation solved live on a perspective
                   mesh. Leapfrog finite differences, Dirichlet edges.
    2. router    : real URLs, no reload, lattice survives navigation.
-   3. motion    : anime.js choreography, reduced-motion aware.
+   3. motion    : Motion (motion.dev) choreography, reduced-motion aware.
    ═══════════════════════════════════════════════════════════════ */
 
 const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const HAS_ANIME = () => typeof window.anime === 'function';
+const HAS_MOTION = () => typeof window.Motion === 'object';
+const EASE = [.22, 1, .36, 1];
 
 /* ───────────────────────────────────────────────────────────────
    1. THE LATTICE
@@ -185,8 +186,39 @@ const Lattice = (() => {
    ─────────────────────────────────────────────────────────────── */
 let observer = null;
 
+/* Motion's WAAPI-accelerated animations don't reliably commit their final
+   value back to the element once finished (and .rv's own opacity:0 rule
+   would win the cascade back if they don't) — so every animate() call below
+   is paired with a timer that force-sets the end state directly. Belt and
+   braces: the animation is cosmetic, this is what guarantees correctness. */
+function commitAfter(targets, seconds, styles) {
+  const els = targets && targets.length !== undefined ? [...targets] : [targets];
+  setTimeout(() => {
+    els.forEach(el => { if (el) Object.assign(el.style, styles); });
+  }, seconds * 1000 + 40);
+}
+
+/* count a readout number up from 0 to its printed value, preserving
+   any non-numeric suffix (×) and thousands separators */
+function countUpNum(el) {
+  const raw = el.textContent.trim();
+  const m = raw.match(/^([\d,]+(?:\.\d+)?)(.*)$/);
+  if (!m) return;
+  const target = parseFloat(m[1].replace(/,/g, ''));
+  const suffix = m[2];
+  const decimals = (m[1].split('.')[1] || '').length;
+  const grouped = m[1].includes(',');
+  const format = n => (grouped ? Number(n).toLocaleString() : n) + suffix;
+  Motion.animate(0, target, {
+    duration: 1.1,
+    ease: EASE,
+    onUpdate: latest => { el.textContent = format(decimals ? latest.toFixed(decimals) : Math.round(latest)); }
+  });
+  setTimeout(() => { el.textContent = format(decimals ? target.toFixed(decimals) : Math.round(target)); }, 1140);
+}
+
 function revealOnScroll(root) {
-  if (REDUCE || !HAS_ANIME()) {
+  if (REDUCE || !HAS_MOTION()) {
     root.querySelectorAll('.rv').forEach(el => { el.style.opacity = 1; });
     return;
   }
@@ -194,50 +226,91 @@ function revealOnScroll(root) {
   observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      anime({
-        targets: entry.target,
-        opacity: [0, 1],
-        translateY: [16, 0],
-        duration: 820,
-        easing: 'cubicBezier(.22,1,.36,1)'
-      });
+      Motion.animate(entry.target, { opacity: [0, 1], y: [16, 0] },
+        { duration: .82, ease: EASE });
+      commitAfter(entry.target, .82, { opacity: '1' });
+      entry.target.querySelectorAll('.readout .num').forEach(countUpNum);
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
 
   root.querySelectorAll('.sec .rv, .idx .rv, footer .rv').forEach(el => {
-    if (el.dataset.seen) return;          // already handled by the entrance timeline
+    if (el.dataset.seen) return;          // already handled by the entrance sequence
     observer.observe(el);
+  });
+}
+
+/* spring-driven hover feedback — replaces the CSS transform transitions
+   previously on .idx-item .arrow and .chan a (color transitions stay in CSS) */
+function attachHoverSprings(root) {
+  if (REDUCE || !HAS_MOTION()) return;
+  const spring = { type: 'spring', stiffness: 300, damping: 20 };
+
+  root.querySelectorAll('.idx-item').forEach(item => {
+    const arrow = item.querySelector('.arrow');
+    if (!arrow) return;
+    item.addEventListener('pointerenter', () => Motion.animate(arrow, { x: 6 }, spring));
+    item.addEventListener('pointerleave', () => Motion.animate(arrow, { x: 0 }, spring));
+  });
+
+  root.querySelectorAll('.chan a').forEach(link => {
+    link.addEventListener('pointerenter', () => Motion.animate(link, { x: 10 }, spring));
+    link.addEventListener('pointerleave', () => Motion.animate(link, { x: 0 }, spring));
   });
 }
 
 function enterPage(root, { firstLoad = false } = {}) {
   const hero = root.querySelector('.hero');
 
-  if (REDUCE || !HAS_ANIME()) {
+  if (REDUCE || !HAS_MOTION()) {
     root.querySelectorAll('.rv').forEach(el => { el.style.opacity = 1; });
+    attachHoverSprings(root);
     return;
   }
 
   if (hero) {
     hero.querySelectorAll('.rv').forEach(el => { el.dataset.seen = '1'; });
-    const tl = anime.timeline({ easing: 'cubicBezier(.22,1,.36,1)' });
-    tl.add({ targets: hero.querySelectorAll('.hero-tags .rv'), opacity: [0, 1], translateY: [8, 0],
-             duration: 700, delay: anime.stagger(60) })
-      .add({ targets: hero.querySelectorAll('.hero-name i'), opacity: [0, 1], translateY: ['110%', '0%'],
-             duration: 1150, delay: anime.stagger(85) }, firstLoad ? '-=450' : '-=520')
-      .add({ targets: hero.querySelector('.hero-line'), opacity: [0, 1], translateY: [12, 0],
-             duration: 820 }, '-=700')
-      .add({ targets: hero.querySelector('.hero-foot'), opacity: [0, 1],
-             duration: 700 }, '-=560');
+
+    const tags = hero.querySelectorAll('.hero-tags .rv');
+    const tagsDur = .7, tagsStagger = .06;
+    Motion.animate(tags, { opacity: [0, 1], y: [8, 0] },
+      { duration: tagsDur, delay: Motion.stagger(tagsStagger), ease: EASE });
+    const tagsEnd = tagsDur + tagsStagger * Math.max(tags.length - 1, 0);
+    commitAfter(tags, tagsEnd, { opacity: '1' });
+
+    const letters = hero.querySelectorAll('.hero-name i');
+    const nameDur = 1.15, nameStagger = .085;
+    const nameStart = Math.max(tagsEnd - (firstLoad ? .45 : .52), 0);
+    Motion.animate(letters, { opacity: [0, 1], y: ['110%', '0%'] },
+      { duration: nameDur, delay: Motion.stagger(nameStagger, { startDelay: nameStart }), ease: EASE });
+    const nameEnd = nameStart + nameDur + nameStagger * Math.max(letters.length - 1, 0);
+    commitAfter(letters, nameEnd, { opacity: '1' });
+
+    const line = hero.querySelector('.hero-line');
+    const lineDur = .82;
+    const lineStart = Math.max(nameEnd - .7, 0);
+    if (line) Motion.animate(line, { opacity: [0, 1], y: [12, 0] },
+      { duration: lineDur, delay: lineStart, ease: EASE });
+    const lineEnd = lineStart + lineDur;
+    commitAfter(line, lineEnd, { opacity: '1' });
+
+    const foot = hero.querySelector('.hero-foot');
+    const footDur = .7;
+    const footStart = Math.max(lineEnd - .56, 0);
+    if (foot) Motion.animate(foot, { opacity: [0, 1] },
+      { duration: footDur, delay: footStart, ease: EASE });
+    commitAfter(foot, footStart + footDur, { opacity: '1' });
   } else {
     const first = root.querySelectorAll('.sec:first-of-type .rv');
     first.forEach(el => { el.dataset.seen = '1'; });
-    anime({ targets: first, opacity: [0, 1], translateY: [18, 0], duration: 880,
-            delay: anime.stagger(70), easing: 'cubicBezier(.22,1,.36,1)' });
+    const firstDur = .88, firstStagger = .07;
+    Motion.animate(first, { opacity: [0, 1], y: [18, 0] },
+      { duration: firstDur, delay: Motion.stagger(firstStagger), ease: EASE });
+    commitAfter(first, firstDur + firstStagger * Math.max(first.length - 1, 0), { opacity: '1' });
   }
 
   revealOnScroll(root);
+  attachHoverSprings(root);
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -261,8 +334,12 @@ async function navigate(url, push = true) {
   if (!main) return;
 
   const fade = (opacity, duration) => new Promise(res => {
-    if (REDUCE || !HAS_ANIME() || !curtain) return res();
-    anime({ targets: curtain, opacity, duration, easing: 'cubicBezier(.4,0,.2,1)', complete: res });
+    if (REDUCE || !HAS_MOTION() || !curtain) return res();
+    Motion.animate(curtain, { opacity }, { duration: duration / 1000, ease: [.4, 0, .2, 1] });
+    // Timed independently of the animation's own completion signal, which
+    // isn't guaranteed to fire promptly (e.g. a backgrounded tab) — the
+    // router must never hang waiting on it.
+    setTimeout(() => { curtain.style.opacity = opacity; res(); }, duration);
   });
 
   await fade(1, 260);

@@ -139,8 +139,8 @@ h3{
 .idx-item h3{transition:color .3s var(--ease)}
 .idx-item:hover h3{color:var(--signal)}
 .idx-item p{color:var(--dim);max-width:52ch;margin-top:.3em;font-size:.99rem}
-.arrow{font-family:var(--mono);font-size:13px;color:var(--faint);transition:transform .4s var(--ease),color .3s}
-.idx-item:hover .arrow{transform:translateX(6px);color:var(--signal)}
+.arrow{font-family:var(--mono);font-size:13px;color:var(--faint);transition:color .3s}
+.idx-item:hover .arrow{color:var(--signal)}
 
 /* ── project entries ── */
 .proj{
@@ -198,10 +198,10 @@ h3{
   font-size:clamp(1.35rem,3.4vw,2.3rem);letter-spacing:-.022em;
   padding:clamp(12px,1.8vh,18px) 0;border-bottom:1px solid var(--rule);
   display:flex;justify-content:space-between;align-items:baseline;gap:16px;
-  transition:color .3s var(--ease),padding-left .4s var(--ease);
+  transition:color .3s var(--ease);
 }
 .chan a:first-child{border-top:1px solid var(--rule)}
-.chan a:hover{color:var(--signal);padding-left:10px}
+.chan a:hover{color:var(--signal)}
 .chan a span{
   font-family:var(--mono);font-size:10.5px;font-weight:400;letter-spacing:.13em;
   text-transform:uppercase;color:var(--faint);
