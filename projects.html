@@ -51,6 +51,7 @@
           full state-vector circuit simulation. The CUDA path keeps state resident on device
           across gate application rather than round-tripping to host memory, which is where
           the speedup actually comes from.</p>
+          <div class="viz"><canvas id="viz-quantum" width="440" height="230"></canvas></div>
           <dl class="readout">
             <div><dt>GPU speedup</dt><dd><span class="num">95.93×</span><small>@ 256 gates</small></dd></div>
             <div><dt>OpenMP gate sweep</dt><dd><span class="num">3.2×</span></dd></div>
@@ -73,6 +74,7 @@
           background job control, pipelines between processes, signal handling for SIGINT and
           SIGTSTP, and I/O redirection. Written to find out precisely what happens between
           pressing Enter and seeing output — and how much of that a library normally hides.</p>
+          <div class="viz"><canvas id="viz-esh" width="440" height="230"></canvas></div>
           <div class="stack"><span>C</span><span>POSIX</span><span>Process Control</span><span>Signals</span><span>File Descriptors</span></div>
         </div>
       </article>
@@ -89,6 +91,7 @@
           select-based I/O multiplexing — one thread, no blocking, no framework. Socket
           lifecycle management, per-client state tracking, and message broadcast. Written to
           understand the network stack that sits under every web framework I will ever be handed.</p>
+          <div class="viz"><canvas id="viz-chat" width="440" height="230"></canvas></div>
           <div class="stack"><span>C</span><span>TCP/IP</span><span>I/O Multiplexing</span><span>Concurrency</span></div>
         </div>
       </article>
@@ -105,6 +108,7 @@
           around the real observational record rather than a convenient one, an Express API
           layer, and visualizations for radius, orbital period, and discovery-method
           distributions.</p>
+          <div class="viz"><canvas id="viz-exo" width="440" height="230"></canvas></div>
           <dl class="readout">
             <div><dt>Confirmed planets</dt><dd><span class="num">5,700</span><small>records</small></dd></div>
             <div><dt>Source</dt><dd>NASA<small>archive</small></dd></div>
