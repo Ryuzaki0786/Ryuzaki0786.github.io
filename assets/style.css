@@ -255,6 +255,10 @@ footer{
   .proj-key{position:static;flex-direction:row;gap:12px}
   .hero{min-height:calc(100svh - 120px)}
   .mast{padding:16px 0 14px}
-  .nav{gap:14px}
+  .nav{gap:8px;letter-spacing:.08em}
   .mark span{display:none}
+}
+
+@media (max-width:400px){
+  .nav{gap:4px;font-size:9px;letter-spacing:.05em}
 }
