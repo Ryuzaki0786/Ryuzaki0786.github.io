@@ -193,8 +193,9 @@ h3{
 .entry h4{font-family:var(--disp);font-weight:600;font-size:1.13rem;letter-spacing:-.012em;margin-bottom:.3em}
 .entry h4 a{border-bottom:1px solid var(--rule-2);transition:color .3s var(--ease),border-color .3s var(--ease)}
 .entry h4 a:hover{color:var(--signal);border-color:var(--signal)}
-.entry p{color:var(--dim);max-width:56ch;font-size:.99rem}
+.entry p{color:var(--dim);max-width:56ch;font-size:.99rem;margin-bottom:.8em}
 .entry p + p{margin-top:.8em}
+.entry .readout{max-width:56ch}
 .entry strong{color:var(--bone);font-weight:600}
 
 .tlist{margin:.7em 0 1em;padding-left:1.15em;color:var(--dim);max-width:56ch;font-size:.99rem}

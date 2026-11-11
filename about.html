@@ -69,9 +69,28 @@
         <div class="meta">Research</div>
         <div>
           <h4>Undergraduate Research Scholar</h4>
-          <p>AI-assisted metadata curation for <strong>re3data</strong>, the global registry
-          of research data repositories. Working on evaluation and enrichment pipelines for
-          repository descriptions.</p>
+          <p>Building a tool that cleans up institution names in <strong>re3data</strong>,
+          the global registry of research data repositories. The registry has 9,413
+          repository-institution links built from 6,148 distinct institution name strings,
+          and the same institution often shows up under several of them, spelled two
+          different ways, or paired with one of its departments. The tool maps each name
+          to a canonical institution and, where one exists, a parent institution.</p>
+          <p>Candidate pairs get narrowed from 18.9 million down to about 270,000 by
+          blocking on shared words, then a rule-based decider I wrote labels them and
+          union-find clustering merges the duplicates. There was no ground truth to check
+          against, so I built an evaluation set by having an LLM judge label pairs in both
+          name orders and keeping only the ones it agreed with itself on. On that set the
+          rules hit 78% accuracy, which roughly matched simple fuzzy string matching, and
+          fine-tuning a sentence embedding model on top didn't do any better.</p>
+          <dl class="readout">
+            <div><dt>Repository links</dt><dd><span class="num">9,413</span></dd></div>
+            <div><dt>Candidate pairs</dt><dd><span class="num">269,771</span><small>from 18.9M</small></dd></div>
+            <div><dt>Names merged</dt><dd><span class="num">602</span><small>of 6,148</small></dd></div>
+            <div><dt>Decider accuracy</dt><dd><span class="num">78%</span><small>n=111</small></dd></div>
+          </dl>
+          <p>Currently fixing a known failure mode (names that differ by one word, like two
+          state universities, can merge when they shouldn't) and building a single
+          command-line tool with a review list for clusters it's unsure about.</p>
         </div>
       </div>
       <div class="entry rv">
